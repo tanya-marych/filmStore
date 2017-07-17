@@ -1,0 +1,143 @@
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+.filmList{
+    position: relative;
+    display: inline-block;
+}
+
+.film{
+    width: 400px;
+    list-style-type: none;
+    padding: 10px 20px;
+    border: 1px solid #37BC9B;
+    border-radius: 4px;
+    background: #48CFAD ;
+    margin-bottom: 10px;
+    position: relative;
+    color:white;
+    cursor: pointer;
+}
+
+.film-title{
+    font-size: 20px;
+    color:white;
+    margin: 10px 0;
+    text-decoration: underline;
+}
+
+.film-details{
+    padding: 10px 0;
+}
+
+.film-details tr td{
+    padding: 5px;
+}
+
+.film-details tr td:first-child{
+    padding-right: 10px;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.film-toggle{
+    position: absolute;
+    right: 0;
+}
+
+.sortList{
+    display: inline-block;
+    padding: 10px;
+    border-radius: 4px;
+    background: #148F77;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    margin-bottom:15px; 
+    text-align: center;
+    border-bottom: 4px solid #0B5345;
+}
+
+.sortList.active{
+    border-bottom: 4px solid transparent;
+}
+
+.deleteFilm{
+    position: absolute;
+    top:5px;
+    right: 5px;
+    z-index: 10;
+}
+
+.container{
+    margin: 10px 20px;
+    display: inline-block;
+    width:440px;
+}
+
+.search{
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+
+.wrong{
+    border: 1px solid red!important;
+}
+
+.addFilm{
+    padding: 10px;
+    border: 1px solid #0B5345;
+    border-radius: 2px;
+    margin: 10px 0 20px;
+    text-align: center;
+}
+
+.addFilm input,textarea{
+    box-sizing: border-box;
+    width:100%;
+    padding: 10px;
+    margin: 5px 0;
+    resize: none;
+    background: #EAECEE;
+    border: 1px solid #ABB2B9;
+    font-size: 16px;
+    color: #566573;
+}
+
+.addFilm select{
+    display: inline-block;
+    margin: 0 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.addFilm input[type="submit"]{
+    background: #148F77;
+    color: white;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+}
+
+.addFilm input[type="submit"]{
+    background: #148F77;
+    color: white;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+}
+
+.addFilm input[type="submit"]:disabled{
+    background: grey;
+}
+
+
