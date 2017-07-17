@@ -46,7 +46,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="container">
-                <ImportFile />
+                <ImportFile loadData={this.props.filmActions.loadData} />
                 <NewFilm data={this.props.filmTypes} addFilm={this.props.filmActions.addFilm}/>
                 <label><input type="radio" onClick={(e)=>this.changeSearchType(e)} name="searchType" value="title" defaultChecked/>Title</label>
                 <label><input type="radio" onClick={(e)=>this.changeSearchType(e)} name="searchType" value="stars"/>Star</label>

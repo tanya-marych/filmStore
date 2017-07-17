@@ -83,6 +83,7 @@ export default class NewFilm extends React.Component{
     addFilm(e){
         e.preventDefault();
         this.film.id = Date.now();
+        console.log(this.film);
         this.props.addFilm(this.film);
         e.target.reset();
     }

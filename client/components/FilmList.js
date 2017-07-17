@@ -17,6 +17,7 @@ class Film extends React.Component{
     }
 
     render(){
+        console.log(this.props.film[0])
         return (
             <li className="film">
                 <h3 className="film-title" onClick={(e) => this.toggleInfo(e)}>{this.props.film.title}</h3>
@@ -60,6 +61,7 @@ export default class FilmList extends React.Component{
 
     render(){
         let list = <p>Not found</p>;
+        console.log("*",this.props.data)
         if(this.props.data.length)
         list = <ul>
                     {this.props.data.map(item => <Film key={item._id} film={item} delete={this.props.actions.deleteFilm}/>)}

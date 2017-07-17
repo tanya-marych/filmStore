@@ -1,5 +1,4 @@
 import React from 'react';
-let fs = require('fs');
 
 export default class ImportFile extends React.Component{
     constructor(props){
@@ -8,13 +7,14 @@ export default class ImportFile extends React.Component{
 
     load(e){
         let file = e.target.files[0];
-        console.log(file);
-        //ОТПРАВКА НА СЕРВЕР
+        this.props.loadData(file);
     }
 
     render(){
         return (
-            <input type="file"name="file" onChange={(e)=>this.load(e)}/>
+            <form method="post" onChange={(e)=>this.load(e)}>
+            <input type="file" name="file" />
+            </form>
         );
     }
 }

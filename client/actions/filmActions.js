@@ -1,4 +1,23 @@
 import api from '../api';
+let fs = require('fs');
+
+export function loadData(file){
+    return (dispatch)=>{
+        api.loadData(file)
+        .then(() =>{
+            api.listFilms()
+                .then(data =>
+                    dispatch({
+                        type:'LOAD_FILMS',
+                        payload:data.data
+                    })
+                )
+        })
+        .catch(err =>{
+            console.log("*",err);
+        }); 
+    }
+};
 
 export function loadFilms(value){
     return (dispatch)=>{
@@ -17,6 +36,7 @@ export function loadFilms(value){
 
 
 export function addFilm(value){
+    console.log(value)
     return (dispatch)=>{
         api.addFilm(value)
         .then(() =>

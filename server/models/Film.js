@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const FilmSchema = new Schema({
     title : { type: String, required: true},
     format: { type: String },
-    year  : { type: String },
+    releaseYear  : { type: Number },
     stars : { type: String }
 });
 

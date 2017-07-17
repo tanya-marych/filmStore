@@ -24,6 +24,10 @@ export function addFilm(data) {
     return film.save();
 }
 
+export function addFilmS(data) {
+    return Film.db.collections.films.insertMany(data);
+}
+
 export function deleteFilm(id) {
     return Film.findById(id).remove();
 }
