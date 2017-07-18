@@ -1,5 +1,4 @@
 import api from '../api';
-let fs = require('fs');
 
 export function loadData(file){
     return (dispatch)=>{
@@ -71,22 +70,11 @@ export function deleteFilm(value){
             console.log("*",err);
         }); 
     }
-    // return {
-    //     type:'DELETE_FILM',
-    //     payload:value 
-    // };
 };
 
 export function sortList(value){
     return {
         type:'SORT_LIST',
         payload:value 
-    };
-};
-
-export function findFilm(searchType,value){
-    return {
-        type:'SEARCH_FILM',
-        payload:{searchType,value}
     };
 };

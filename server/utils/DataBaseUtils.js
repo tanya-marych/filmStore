@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 
 const Film = mongoose.model('Film');
 
-
 export function setUpConnection(){
     mongoose.connect(`mongodb://root:secret@ds161042.mlab.com:61042/film_store`);
 }

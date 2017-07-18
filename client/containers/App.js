@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as filmActions from '../actions/filmActions';
+import * as filterActions from '../actions/filterActions';
 
 import FilmList from '../components/FilmList';
 import NewFilm from '../components/NewFilm';
@@ -11,21 +12,20 @@ import ImportFile from '../components/ImportFile';
 class App extends React.Component {
     constructor(props){
         super(props);
-        this.searchType = "title";
-        this.searchValue = "";
     }
 
     findFilm(e){
-        this.searchValue=e.target.value;
-        // if(this.searchType=="title"){
-            this.props.filmActions.findFilm(this.searchType,this.searchValue);
-        // }
-        // else{
-        //     if(this.searchValue==""){
-        //         e.target.className = e.target.className.replace("wrong","");
-        //         this.props.filmActions.findFilm(this.searchType,this.searchValue);
-        //         return;
-        //     }  
+        let searchValue=e.target.value;
+        let reg = /[a-zA-Z0-9\s]+/;
+        let res = reg.exec(searchValue);
+        if(res!=null || searchValue==""){
+            e.target.className = e.target.className.replace("wrong","");
+            this.props.filterActions.changeFilterValue(searchValue);
+        }else{
+            e.target.className += (e.target.className.indexOf("wrong")>-1?"":" wrong");
+        } 
+
+       
         //     let reg = /^\w{2,}\s\w{2,}(\s\w{2,})?$/;
         //     let res = reg.exec(this.searchValue);
         //     if(res!=null){
@@ -38,20 +38,34 @@ class App extends React.Component {
         // }
     }
 
+    componentWillMount(){
+        this.props.filmActions.loadFilms();
+    }
+
     changeSearchType(e){
-        this.searchType = e.target.value;
-        this.props.filmActions.findFilm(this.searchType,this.searchValue);
+        let searchType = e.target.value;
+        this.props.filterActions.changeFilterType(searchType);
+    }
+
+    searchFilms(){
+        let s = this.props.search;
+        return this.props.films.filter(item=>{
+            return item[s.searchType].toLowerCase().indexOf(s.searchValue.toLowerCase())>-1;
+        });
     }
 
     render() {
+        let data = this.searchFilms();
         return (
             <div className="container">
                 <ImportFile loadData={this.props.filmActions.loadData} />
                 <NewFilm data={this.props.filmTypes} addFilm={this.props.filmActions.addFilm}/>
-                <label><input type="radio" onClick={(e)=>this.changeSearchType(e)} name="searchType" value="title" defaultChecked/>Title</label>
-                <label><input type="radio" onClick={(e)=>this.changeSearchType(e)} name="searchType" value="stars"/>Star</label>
+
+                <label><input type="radio" onChange={(e)=>this.changeSearchType(e)} value="title" checked={this.props.search.searchType=="title"?true:false}/>Title</label>
+                <label><input type="radio" onChange={(e)=>this.changeSearchType(e)} value="stars" checked={this.props.search.searchType=="stars"?true:false}/>Star</label>
                 <input className="search" type='text' onChange={(e)=>this.findFilm(e)} placeholder="Search film here.."/>
-                <FilmList sorted={this.props.sorted} data={this.props.films} actions={this.props.filmActions}/>
+                
+                <FilmList sorted={this.props.sorted} data={data} actions={this.props.filmActions}/>
             </div>
         );
     }
@@ -59,15 +73,17 @@ class App extends React.Component {
 
 function mapStateToProps (state) {
   return {
-      films: state.films,
-      sorted: state.sorted,
-      filmTypes: state.filmTypes
+      films: state.film.films,
+      sorted: state.film.sorted,
+      filmTypes: state.film.filmTypes,
+      search:state.searchFilter
   };
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-      filmActions: bindActionCreators(filmActions,dispatch)
+      filmActions: bindActionCreators(filmActions,dispatch),
+      filterActions: bindActionCreators(filterActions,dispatch)
   };
 }
 

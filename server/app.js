@@ -7,11 +7,8 @@ const app = express();
 
 // Set up connection of database
 db.setUpConnection();
-
 // Using bodyParser middleware
 app.use( bodyParser.json() );
-
-
 // Allow requests from any origin
 app.use(cors({ origin: '*' }));
 app.options('*', cors());

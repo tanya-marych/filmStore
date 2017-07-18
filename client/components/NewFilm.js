@@ -86,15 +86,25 @@ export default class NewFilm extends React.Component{
         console.log(this.film);
         this.props.addFilm(this.film);
         e.target.reset();
+        this.film={
+            id:"",
+            title:"",
+            stars:"",
+            format:this.props.data[0],
+            releaseYear:this.selYear
+
+        };
+        e.target.title.className +=" wrong";
+        e.target.textarea.className +=" wrong";
     }
 
     render(){
         return (
             <form className="addFilm" onSubmit={(e) => this.addFilm(e)}>
-                <input type="text" placeholder="Film title" className="wrong" onChange={e=>this.checkTitle(e)}/>
+                <input name="title" type="text" placeholder="Film title" className="wrong" onChange={e=>this.checkTitle(e)}/>
                 <SelectYear from={this.selYear} to="1900" change={this.checkYear.bind(this)}/>
                 <SelectFilmType data={this.props.data} change={this.checkFormat.bind(this)}/>
-                <textarea className="wrong" onChange={e=>this.checkStars(e)} placeholder="Film stars"/>
+                <textarea name="textarea" className="wrong" onChange={e=>this.checkStars(e)} placeholder="Film stars"/>
                 <input type="submit" disabled ref={submit=> this.submit=submit} value="Send"/>
             </form>
         );

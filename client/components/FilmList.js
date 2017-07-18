@@ -49,9 +49,9 @@ export default class FilmList extends React.Component{
         super(props);
     }
 
-    componentWillMount(){
-        this.props.actions.loadFilms();
-    }
+    // componentWillMount(){
+    //     this.props.actions.loadFilms();
+    // }
 
     sortList(e){
         e.preventDefault();
@@ -59,12 +59,18 @@ export default class FilmList extends React.Component{
             this.props.actions.sortList(this.props.sorted);
     }
 
+    sortedList(){
+        if(this.props.sorted==true)
+            return this.props.data.sort((f1,f2) => f1.title>f2.title);
+        return this.props.data;
+    }
+
     render(){
+        let dat = this.sortedList();
         let list = <p>Not found</p>;
-        console.log("*",this.props.data)
-        if(this.props.data.length)
+        if(dat.length)
         list = <ul>
-                    {this.props.data.map(item => <Film key={item._id} film={item} delete={this.props.actions.deleteFilm}/>)}
+                    {dat.map(item => <Film key={item._id} film={item} delete={this.props.actions.deleteFilm}/>)}
                 </ul>;
         return (
             <div className="filmList">
