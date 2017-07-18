@@ -17,7 +17,6 @@ class Film extends React.Component{
     }
 
     render(){
-        console.log(this.props.film[0])
         return (
             <li className="film">
                 <h3 className="film-title" onClick={(e) => this.toggleInfo(e)}>{this.props.film.title}</h3>
@@ -48,10 +47,6 @@ export default class FilmList extends React.Component{
     constructor(props){
         super(props);
     }
-
-    // componentWillMount(){
-    //     this.props.actions.loadFilms();
-    // }
 
     sortList(e){
         e.preventDefault();

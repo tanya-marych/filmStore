@@ -8,31 +8,17 @@ import * as filterActions from '../actions/filterActions';
 import FilmList from '../components/FilmList';
 import NewFilm from '../components/NewFilm';
 import ImportFile from '../components/ImportFile';
+import Search from '../components/Search';
+
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 class App extends React.Component {
     constructor(props){
         super(props);
     }
 
-    findFilm(e){
-        let searchValue=e.target.value;
-        let reg = /[a-zA-Z0-9\s]+/;
-        let res = reg.exec(searchValue);
-        if(res!=null || searchValue==""){
-            e.target.className = e.target.className.replace("wrong","");
-            this.props.filterActions.changeFilterValue(searchValue);
-        }else{
-            e.target.className += (e.target.className.indexOf("wrong")>-1?"":" wrong");
-        } 
-    }
-
-    componentWillMount(){
+     componentWillMount(){
         this.props.filmActions.loadFilms();
-    }
-
-    changeSearchType(e){
-        let searchType = e.target.value;
-        this.props.filterActions.changeFilterType(searchType);
     }
 
     searchFilms(){
@@ -46,15 +32,37 @@ class App extends React.Component {
         let data = this.searchFilms();
         return (
             <div className="container">
-                <ImportFile loadData={this.props.filmActions.loadData} />
-                <NewFilm data={this.props.filmTypes} addFilm={this.props.filmActions.addFilm}/>
-
-                <label><input type="radio" onChange={(e)=>this.changeSearchType(e)} value="title" checked={this.props.search.searchType=="title"?true:false}/>Title</label>
-                <label><input type="radio" onChange={(e)=>this.changeSearchType(e)} value="stars" checked={this.props.search.searchType=="stars"?true:false}/>Star</label>
-                <input className="search" type='text' onChange={(e)=>this.findFilm(e)} placeholder="Search film here.."/>
                 
-                <FilmList sorted={this.props.sorted} data={data} actions={this.props.filmActions}/>
+                <Tabs>
+                    <TabList>
+                        <Tab>Film list</Tab>
+                        <Tab>Add film</Tab>
+                    </TabList>
+
+                    <TabPanel>
+                        <section className="list">
+                            <Search filter={this.props.filterActions} search={this.props.search} />
+                            <FilmList sorted={this.props.sorted} data={data} actions={this.props.filmActions}/>
+                        </section>
+                    </TabPanel>
+                    <TabPanel>
+                        <section className="newFilm">
+                            <ImportFile loadData={this.props.filmActions.loadData} />
+                            <NewFilm data={this.props.filmTypes} addFilm={this.props.filmActions.addFilm}/>
+                        </section>
+                    </TabPanel>
+                </Tabs>
             </div>
+                /*<div className="container">
+                    <section className="newFilm">
+                        <ImportFile loadData={this.props.filmActions.loadData} />
+                        <NewFilm data={this.props.filmTypes} addFilm={this.props.filmActions.addFilm}/>
+                    </section>
+                    <section className="list">
+                        <Search filter={this.props.filterActions} search={this.props.search} />
+                        <FilmList sorted={this.props.sorted} data={data} actions={this.props.filmActions}/>
+                    </section>
+            </div>*/
         );
     }
 }

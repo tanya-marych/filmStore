@@ -1,9 +1,8 @@
 import axios from 'axios';
-let apiPrefix = "http://localhost:8080";
+import { apiPrefix } from '../../etc/config.json';
 
 export default {
     loadData(file){
-
         return axios.post(`${apiPrefix}/load`,file);
     },
 

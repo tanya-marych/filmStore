@@ -1,10 +1,11 @@
 import '../models/Film';
 import mongoose from "mongoose";
+import {db} from '../../etc/config.json';
 
 const Film = mongoose.model('Film');
 
 export function setUpConnection(){
-    mongoose.connect(`mongodb://root:secret@ds161042.mlab.com:61042/film_store`);
+    mongoose.connect(`mongodb://${db.user}:${db.password}@${db.link}.mlab.com:${db.port}/${db.collection}`);
 }
 
 export function listFilms() {

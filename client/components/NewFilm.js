@@ -44,13 +44,11 @@ export default class NewFilm extends React.Component{
         let actors =e.target.value.trim();
         let reg = /^\w{2,}\s\w{2,}(\s\w{2,})?(,\s?\w{2,}\s\w{2,}(\s\w{2,})?)*$/;
         let res = reg.exec(actors);
-        if(res!=null){
-            e.target.className = e.target.className.replace("wrong","");
-            this.film.stars = actors;
-        }else{
-            this.film.stars="";
-            e.target.className = (e.target.className.indexOf("wrong")>-1?e.target.className:"wrong");
-        }
+
+        let className = e.target.className;
+        e.target.className = (res!=null?className.replace("wrong",""):className.indexOf("wrong")>-1?className:"wrong");
+        this.film.stars = (res!=null?actors:"");
+
         this.checkSubmit();
     }
 
@@ -58,13 +56,14 @@ export default class NewFilm extends React.Component{
         let title =e.target.value.trim();
         let reg = /[a-zA-Z0-9\s]{3,}/;
         let res = reg.exec(title);
-        if(title=="" || title.length<3){
-            e.target.className = (e.target.className.indexOf("wrong")>-1?e.target.className:"wrong");
-            this.film.title="";
-        }else{
-            this.film.title = title;
-            e.target.className = e.target.className.replace("wrong","");
-        } 
+        
+        let className = e.target.className;
+        e.target.className = (title=="" || title.length<3
+            ?className.indexOf("wrong")>-1 ? className : className+" wrong"
+            :className.replace("wrong","")
+        );
+        this.film.title=(title=="" || title.length<3?"":title);
+        
         this.checkSubmit();
     }
 
@@ -83,9 +82,11 @@ export default class NewFilm extends React.Component{
     addFilm(e){
         e.preventDefault();
         this.film.id = Date.now();
-        console.log(this.film);
         this.props.addFilm(this.film);
+
         e.target.reset();
+        e.target.title.className +=" wrong";
+        e.target.textarea.className +=" wrong";
         this.film={
             id:"",
             title:"",
@@ -94,8 +95,6 @@ export default class NewFilm extends React.Component{
             releaseYear:this.selYear
 
         };
-        e.target.title.className +=" wrong";
-        e.target.textarea.className +=" wrong";
     }
 
     render(){

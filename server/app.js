@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import * as db from './utils/DataBaseUtils';
+import {serverPort} from '../etc/config.json';
 
 const app = express();
 
@@ -38,7 +39,6 @@ app.post('/load',bodyParser.text({type: '*/*'}),(req,res)=>{
 });
 
 app.post('/films', (req, res) => {
-    console.log(req.body);
     db.addFilm(req.body).then(data =>res.send(data));
 });
 
@@ -46,6 +46,6 @@ app.delete('/films/:id', (req, res) => {
     db.deleteFilm(req.params.id).then(data => res.send(data));
 });
 
-const server = app.listen(8080, () => {
-    console.log(`Server is up and running on port 8080`);
+const server = app.listen(serverPort, () => {
+    console.log(`Server is up and running on port ${serverPort}`);
 });

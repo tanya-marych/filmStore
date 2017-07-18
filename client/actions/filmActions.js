@@ -35,7 +35,6 @@ export function loadFilms(value){
 
 
 export function addFilm(value){
-    console.log(value)
     return (dispatch)=>{
         api.addFilm(value)
         .then(() =>
@@ -54,7 +53,6 @@ export function addFilm(value){
 };
 
 export function deleteFilm(value){
-    console.log("val",value);
     return (dispatch)=>{
         api.deleteFilm(value)
         .then(() =>
