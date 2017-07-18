@@ -24,18 +24,6 @@ class App extends React.Component {
         }else{
             e.target.className += (e.target.className.indexOf("wrong")>-1?"":" wrong");
         } 
-
-       
-        //     let reg = /^\w{2,}\s\w{2,}(\s\w{2,})?$/;
-        //     let res = reg.exec(this.searchValue);
-        //     if(res!=null){
-        //         e.target.className = e.target.className.replace("wrong","");
-        //         this.props.filmActions.findFilm(this.searchType,this.searchValue);
-        //     }else{
-        //         e.target.className += (e.target.className.indexOf("wrong")>-1?"":" wrong");
-        //         this.props.filmActions.findFilm(this.searchType,"zzz");
-        //     }
-        // }
     }
 
     componentWillMount(){
