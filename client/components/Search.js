@@ -28,10 +28,16 @@ export default class ImportFile extends React.Component{
 
     render(){
         return (
-            <div>
-                <label><input type="radio" onChange={(e)=>this.changeSearchType(e)} value="title" checked={this.props.search.searchType=="title"?true:false}/>Title</label>
-                <label><input type="radio" onChange={(e)=>this.changeSearchType(e)} value="stars" checked={this.props.search.searchType=="stars"?true:false}/>Star</label>
-                <input className="search" type='text' onChange={(e)=>this.findFilm(e)} value={this.props.search.searchValue} placeholder="Search film here.."/>
+            <div className="search" >
+                <label className="search-radio">
+                    <input type="radio" onChange={(e)=>this.changeSearchType(e)} value="title" checked={this.props.search.searchType=="title"?true:false}/>
+                    Title
+                </label>
+                <label className="search-radio">
+                    <input type="radio" onChange={(e)=>this.changeSearchType(e)} value="stars" checked={this.props.search.searchType=="stars"?true:false}/>
+                    Star
+                </label>
+                <input className="search-input" type='text' onChange={(e)=>this.findFilm(e)} value={this.props.search.searchValue} placeholder="Search film here.."/>
             </div>
         );
     }

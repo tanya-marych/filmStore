@@ -6,15 +6,120 @@
     display: block;
 }
 
+.header{
+    width:100%;
+    text-align: center;
+    background: #148F77;
+    padding: 20px 0;
+    font-size: 30px;
+    color:white;
+    margin-bottom: 30px;
+}
+
+.container{
+    display: block;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.react-tabs__tab-list{
+    text-align: center;
+}
+
+.react-tabs__tab{
+    padding: 10px 20px;
+    background: #148F77;
+    display: inline-block;
+    color: white;
+    font-size: 18px;
+    margin: 0 5px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    cursor: pointer;
+    border-bottom: 2px solid white;
+}
+
+.react-tabs__tab.react-tabs__tab--selected{
+    background: #0E6251;
+    border-bottom: 2px solid transparent;
+}
+
+.react-tabs__tab-panel.react-tabs__tab-panel--selected{
+    border: 1px solid #0E6251;
+    border-radius: 2px;
+    padding: 25px 20px;
+}
+
+
+
+.search-input{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+
+.search-radio{
+    margin: 0 15px;
+}
+.search-radio>input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+
+    height: 25px;
+    width: 25px;
+    transition: all 0.15s ease-out 0s;
+    background: #cbd1d8;
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    top: 6px;
+    margin-right: 5px;
+}
+.search-radio>input:hover {
+  background: #9faab7;
+}
+.search-radio>input:checked {
+  background: #148F77;
+}
+.search-radio>input:checked::before {
+    width: inherit;
+    content: '\2714';
+    display: inline-block;
+    font-size: 14px;
+    text-align: center;
+    position: absolute;
+    line-height: 25px;
+}
+
+.list, .newFilm{
+    max-width: 450px;
+    margin: 0 auto;
+    text-align: center;
+}
+
 .filmList{
     position: relative;
     display: inline-block;
+    text-align: right;
+    width:100%;
+}
+
+.filmList p{
+    text-align: center;
 }
 
 .film{
-    width: 400px;
     list-style-type: none;
-    padding: 10px 20px;
     border: 1px solid #37BC9B;
     border-radius: 4px;
     background: #48CFAD ;
@@ -22,17 +127,19 @@
     position: relative;
     color:white;
     cursor: pointer;
+    text-align: left;
 }
 
 .film-title{
     font-size: 20px;
     color:white;
-    margin: 10px 0;
+    margin: 0;
     text-decoration: underline;
+    padding: 10px 20px;
 }
 
 .film-details{
-    padding: 10px 0;
+    padding: 10px 20px;
 }
 
 .film-details tr td{
@@ -74,12 +181,6 @@
     z-index: 10;
 }
 
-.container{
-    margin: 10px 20px;
-    display: inline-block;
-    width:440px;
-}
-
 .search{
     display: block;
     width: 100%;
@@ -87,7 +188,6 @@
     padding: 5px;
     box-sizing: border-box;
 }
-
 
 .wrong{
     border: 1px solid red!important;
@@ -97,7 +197,7 @@
     padding: 10px;
     border: 1px solid #0B5345;
     border-radius: 2px;
-    margin: 10px 0 20px;
+    margin: 30px 0 20px;
     text-align: center;
 }
 
@@ -140,4 +240,14 @@
     background: grey;
 }
 
+.loadFilms{
+    border: 1px solid #0B5345;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
 
+@media screen and (min-width:768px) and (max-width:1024px){
+    .react-tabs__tab-panel{
+        margin:0 80px;
+    }
+}

@@ -12,8 +12,8 @@ export default class ImportFile extends React.Component{
 
     render(){
         return (
-            <form method="post" onChange={(e)=>this.load(e)}>
-            <input type="file" name="file" />
+            <form method="post" className="loadFilms" onChange={(e)=>this.load(e)}>
+            <input type="file" name="file"/>
             </form>
         );
     }
