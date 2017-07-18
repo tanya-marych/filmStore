@@ -31,9 +31,11 @@ class App extends React.Component {
     render() {
         let data = this.searchFilms();
         return (
-            <div className="container">
-                
-                <Tabs>
+            <div>
+                <header className="header">
+                    <h1>Film store</h1>
+                </header>
+                <Tabs className="container">
                     <TabList>
                         <Tab>Film list</Tab>
                         <Tab>Add film</Tab>
@@ -48,21 +50,12 @@ class App extends React.Component {
                     <TabPanel>
                         <section className="newFilm">
                             <ImportFile loadData={this.props.filmActions.loadData} />
+                            or
                             <NewFilm data={this.props.filmTypes} addFilm={this.props.filmActions.addFilm}/>
                         </section>
                     </TabPanel>
                 </Tabs>
             </div>
-                /*<div className="container">
-                    <section className="newFilm">
-                        <ImportFile loadData={this.props.filmActions.loadData} />
-                        <NewFilm data={this.props.filmTypes} addFilm={this.props.filmActions.addFilm}/>
-                    </section>
-                    <section className="list">
-                        <Search filter={this.props.filterActions} search={this.props.search} />
-                        <FilmList sorted={this.props.sorted} data={data} actions={this.props.filmActions}/>
-                    </section>
-            </div>*/
         );
     }
 }

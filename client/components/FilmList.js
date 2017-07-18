@@ -56,7 +56,7 @@ export default class FilmList extends React.Component{
 
     sortedList(){
         if(this.props.sorted==true)
-            return this.props.data.sort((f1,f2) => f1.title>f2.title);
+            return this.props.data.sort((f1,f2) =>f1.title.localeCompare(f2.title));
         return this.props.data;
     }
 
