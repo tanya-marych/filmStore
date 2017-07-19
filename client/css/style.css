@@ -1,9 +1,16 @@
 .hide{
-    display: none;
+    display: none!important;
 }
 
 .show{
-    display: block;
+    display: block!important;
+}
+
+.error{
+    font-size: 14px!important;
+    color: red!important;
+    padding: 5px 0 15px;
+    display: none;
 }
 
 .header{

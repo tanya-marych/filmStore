@@ -49,19 +49,34 @@ export default class NewFilm extends React.Component{
         e.target.className = (res!=null?className.replace("wrong",""):className.indexOf("wrong")>-1?className:"wrong");
         this.film.stars = (res!=null?actors:"");
 
+        let error = this.starsError.className;
+        this.starsError.className = (res==null
+            ?error.indexOf("show")>-1 ? error.replace("hide","show") : error+" show"
+            :error.replace("show","")
+        );
+
         this.checkSubmit();
     }
 
     checkTitle(e){
         let title =e.target.value.trim();
-        let reg = /[a-zA-Z0-9\s]{3,}/;
+        let reg = /^[a-zA-Z0-9\s]{3,}$/;
         let res = reg.exec(title);
+        console.log("res",res)
         
         let className = e.target.className;
-        e.target.className = (title=="" || title.length<3
+        e.target.className = (title=="" || res==null
             ?className.indexOf("wrong")>-1 ? className : className+" wrong"
             :className.replace("wrong","")
         );
+
+        let error = this.titleError.className;
+        this.titleError.className = (title=="" || res==null
+            ?error.indexOf("show")>-1 ? error.replace("hide","show") : error+" show"
+            :error.replace("show","")
+        );
+        
+        
         this.film.title=(title=="" || title.length<3?"":title);
         
         this.checkSubmit();
@@ -103,9 +118,14 @@ export default class NewFilm extends React.Component{
         return (
             <form className="addFilm" onSubmit={(e) => this.addFilm(e)}>
                 <input name="title" type="text" placeholder="Film title" className="wrong" onChange={e=>this.checkTitle(e)}/>
+                <span ref={error=>this.titleError = error} className="error">You should use only letters and numbers.<br/> Title consist of 3 and more letters</span>
                 <SelectYear from={this.selYear} to="1900" change={this.checkYear.bind(this)}/>
                 <SelectFilmType data={this.props.data} change={this.checkFormat.bind(this)}/>
                 <textarea name="textarea" className="wrong" onChange={e=>this.checkStars(e)} placeholder="Film stars"/>
+                <span ref={error=>this.starsError = error} className="error">
+                    You should use only letters, numbers,space and ","<br/>
+                    Example: Johnny Depp, Angelina Jolie
+                    </span>
                 <input type="submit" disabled ref={submit=> this.submit=submit} value="Send"/>
             </form>
         );

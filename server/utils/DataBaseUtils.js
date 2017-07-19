@@ -19,7 +19,6 @@ export function addFilm(data) {
         releaseYear: data.releaseYear,
         stars: data.stars
     });
-
     return film.save();
 }
 
