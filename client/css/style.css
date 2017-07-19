@@ -225,24 +225,26 @@
     color: white;
     border: none;
     border-radius: 0;
-    margin: 0;
-}
-
-.addFilm input[type="submit"]{
-    background: #148F77;
-    color: white;
-    border: none;
-    border-radius: 0;
-    margin: 0;
+    margin: 0 0 10px;
 }
 
 .addFilm input[type="submit"]:disabled{
     background: grey;
 }
 
+.addFilm p{
+    font-size: 18px;
+}
+
 .loadFilms{
     border: 1px solid #0B5345;
     padding: 10px 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.loadFilms input{
     margin-bottom: 20px;
 }
 

@@ -93,8 +93,10 @@ export default class NewFilm extends React.Component{
             stars:"",
             format:this.props.data[0],
             releaseYear:this.selYear
-
         };
+        let x = document.createElement("p");
+        x.append("Film was added to the store");
+        e.target.append(x);
     }
 
     render(){

@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
-    "start": "webpack-dev-server",
-    "server": "babel-node server/app.js"
+    "start": "webpack-dev-server"
   },
   "author": "Tanya Marych",
   "license": "ISC",

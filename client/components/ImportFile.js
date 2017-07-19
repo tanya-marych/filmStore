@@ -8,6 +8,10 @@ export default class ImportFile extends React.Component{
     load(e){
         let file = e.target.files[0];
         this.props.loadData(file);
+
+        let x = document.createElement("p");
+        x.append("Films were added to the store");
+        e.target.form.append(x);
     }
 
     render(){
